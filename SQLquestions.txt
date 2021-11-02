@@ -1,0 +1,159 @@
+USE world;
+SHOW tables;
+DESCRIBE city;
+DESCRIBE country;
+DESCRIBE countrylanguage;
+SELECT * FROM city;
+SELECT * FROM country;
+SELECT * FROM countrylanguage;
+
+SELECT COUNT(countrycode) FROM city WHERE countrycode = 'USA'; 
+#1.274
+
+SELECT Name, Population, LifeExpectancy FROM country WHERE name = 'Argentina';
+#2.Population = 37032000 LifeExpectancy = 75.1
+
+SELECT Name, LifeExpectancy FROM country WHERE LifeExpectancy IS NOT NULL ORDER BY LifeExpectancy DESC LIMIT 10;
+#3.Andorra - 83.5
+
+SELECT cou.name, cit.name, capital, id, countrycode
+FROM country AS cou
+JOIN city AS cit
+ON cou.capital=cit.id
+WHERE countrycode = 'ESP';
+#4.Madrid
+
+
+SELECT name, cou.code, language, region
+FROM country AS cou
+JOIN countrylanguage AS cl
+ON cou.code=cl.countrycode
+WHERE region = 'Southeast Asia';
+/*5.    Chinese
+		English
+		Malay
+		Malay-English
+		Bali
+		Banja
+		Batakki
+		Bugi
+		Javanese
+		Madura
+		Malay
+		Minangkabau
+		Sunda
+		Chinese
+		Khmer
+		TÂšam
+		Vietnamese
+		Lao
+		Lao-Soung
+		Mon-khmer
+		Thai
+		Burmese
+		Chin
+		Kachin
+		Karen
+		Kayah
+		Mon
+		Rakhine
+		Shan
+		Chinese
+		Dusun
+		English
+		Iban
+		Malay
+		Tamil
+		Bicol
+		Cebuano
+		Hiligaynon
+		Ilocano
+		Maguindanao
+		Maranao
+		Pampango
+		Pangasinan
+		Pilipino
+		Waray-waray
+		Chinese
+		Malay
+		Tamil
+		Chinese
+		Khmer
+		Kuy
+		Lao
+		Malay
+		Thai
+		Portuguese
+		Sunda
+		Chinese
+		Khmer
+		Man
+		Miao
+		Muong
+		Nung
+		Thai
+		Tho
+		Vietnamese
+					*/
+
+SELECT id, Name FROM city WHERE name LIKE 'F%' ORDER BY name ASC LIMIT 25;
+	/* 6.   Faaa
+			Fagatogo
+			Fairfield
+			Faisalabad
+			Faizabad
+			Fakaofo
+			Fall River
+			Fargona
+			Faridabad
+			Farrukhabad-cum-Fatehgarh
+			Fatehpur
+			Fayetteville
+			FÃ¨s
+			FÃ¼rth
+			Feira de Santana
+			Fengcheng
+			Fengshan
+			Fengyuan
+			Fernando de la Mora
+			Ferrara
+			Ferraz de Vasconcelos
+			Fianarantsoa
+			Firenze
+			Firozabad
+			Flint
+								*/
+
+SELECT COUNT(id)
+FROM city cit
+JOIN country cou
+ON cit.countrycode = cou.code
+WHERE COU.name = 'china';
+#7. 363
+
+SELECT Name, population FROM country WHERE population IS NOT NULL AND population > 0 ORDER BY population ASC LIMIT 5;
+#8. Pitcairn
+
+SELECT COUNT(name) FROM country;
+#9 239
+
+SELECT name, SurfaceArea FROM country WHERE SurfaceArea > 0 ORDER BY SurfaceArea DESC LIMIT 10;
+/* #10 	Russian Federation	17075400.00
+		Antarctica	13120000.00
+		Canada	9970610.00
+		China	9572900.00
+		United States	9363520.00
+		Brazil	8547403.00
+		Australia	7741220.00
+		India	3287263.00
+		Argentina	2780400.00
+		Kazakstan	2724900.00
+								*/
+
+SELECT name, population FROM city WHERE CountryCode = 'JPN' ORDER BY population DESC LIMIT 5;
+/* #11 		Tokyo	7980230
+			Jokohama [Yokohama]	3339594
+			Osaka	2595674
+			Nagoya	2154376
+			Sapporo	1790886
+								*/
